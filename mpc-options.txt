@@ -1,0 +1,42 @@
+Usage: mpc <command> [command args]...
+mpc version: 0.17
+mpc                              Displays status
+mpc add <file>                   Add a song to the current playlist
+mpc crop                         Remove all but the currently playing song
+mpc current                      Show the currently playing song
+mpc del <position>               Remove a song from the current playlist
+mpc play [<position>]            Start playing at <position> (default: 1)
+mpc next                         Play the next song in the current playlist
+mpc prev                         Play the previous song in the current playlist
+mpc pause                        Pauses the currently playing song
+mpc toggle                       Toggles Play/Pause, plays if stopped
+mpc stop                         Stop the currently playing playlists
+mpc seek [+-][HH:MM:SS]|<0-100>% Seeks to the specified position
+mpc clear                        Clear the current playlist
+mpc outputs                      Show the current outputs
+mpc enable <output #>            Enable a output
+mpc disable <output #>           Disable a output
+mpc shuffle                      Shuffle the current playlist
+mpc move <from> <to>             Move song in playlist
+mpc playlist                     Print the current playlist
+mpc listall [<file>]             List all songs in the music dir
+mpc ls [<directory>]             List the contents of <directory>
+mpc lsplaylists                  Lists currently available playlists
+mpc load <file>                  Load <file> as a playlist
+mpc save <file>                  Saves a playlist as <file>
+mpc rm <file>                    Removes a playlist
+mpc volume [+-]<num>             Sets volume to <num> or adjusts by [+-]<num>
+mpc repeat <on|off>              Toggle repeat mode, or specify state
+mpc random <on|off>              Toggle random mode, or specify state
+mpc single <on|off>              Toggle single mode, or specify state
+mpc consume <on|off>             Toggle consume mode, or specify state
+mpc search <type> <query>        Search for a song
+mpc find <type> <query>          Find a song (exact match)
+mpc list <type> [<type> <query>] Show all tags of <type>
+mpc crossfade [<seconds>]        Set and display crossfade settings
+mpc update [<path>]              Scans music directory for updates
+mpc stats                        Displays statistics about MPD
+mpc version                      Reports version of MPD
+mpc idle                         Idle until an event occurs
+mpc idleloop                     Continuously idle until an event occurs
+For more information about these and other options look at man 1 mpc
