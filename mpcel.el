@@ -188,9 +188,49 @@
   (message "Playlist %s not found" playlist))
 )
 
+(defun mpcel-playlist-view ()
+"Shows available playlists"
+  (interactive)
+  (shell-command 
+   "mpc lsplaylists"))
+
+;; prints the current playlist :
+(defun mpcel-playlist-current-print ()
+  "Prints mpd's current playlist"
+  (interactive)
+  (get-buffer-create "*mpcel playlist*") 
+  (shell-command 
+   "mpc --format \"[%artist%--[%album%--[%title%]]]|[%file%]\" playlist" "*mpcel playlist*")
+  (with-current-buffer "*mpcel playlist*"
+         (toggle-read-only))
+)
+
+(defun mpcel-library-list ()
+"Shows all the files in the music library"
+  (interactive)
+ (get-buffer-create "*mpcel Music library")
+ (shell-command "mpc listall" "*mpcel Music library"  "*mpcel Music library")
+  (with-current-buffer "*mpcel Music library*"
+         (toggle-read-only))
+)
+
+;;*** 2009-10-28-21:07 Rene ***
+(defun mpcel-playlist-add-song-library
+  (interactive)
+)
+
+;;*** 2009-11-09-19:27 Rene ***
+(defun mpcel-library-search-track (pattern)
+ (interactive "sEnter searchpattern:" pattern)
+  ;; Use buffer with Music library
+ ( if (string= (buffer-name) "*mpcel Music library") 
+	  (message "Library buffer select") 
+      (mpcel-library-list))
+)
+
 ;; prints the playlist :
 (defun mpcel-playlist-print ()
-  "Prins entire mpd's playlist"
+  "Prints entire mpd's playlist"
   (interactive)
   (shell-command 
    "mpc --format \"[%artist%--[%album%--[%title%]]]|[%file%]\" playlist"))
