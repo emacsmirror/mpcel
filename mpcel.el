@@ -82,7 +82,7 @@
 (defun mpcel-version ()
   "mpcel version. This is the first."
   (interactive)
-  (message "mpcel version 1.1 - written in 2006 by Bourgoin Jean-Baptiste"))
+  (message "mpcel version 1.3 - written in 2006 by Bourgoin Jean-Baptiste"))
 
 
 ;; MPD
@@ -206,6 +206,7 @@
 )
 
 (defun mpcel-library-list ()
+;; not functioning ;-(
 "Shows all the files in the music library"
   (interactive)
  (get-buffer-create "*mpcel Music library")
