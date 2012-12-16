@@ -205,12 +205,13 @@
          (toggle-read-only))
 )
 
+;; library functions
+
 (defun mpcel-library-list ()
-;; not functioning ;-(
 "Shows all the files in the music library"
   (interactive)
- (get-buffer-create "*mpcel Music library")
- (shell-command "mpc listall" "*mpcel Music library"  "*mpcel Music library")
+  (switch-to-buffer (get-buffer-create "*mpcel Music library*"))
+   (shell-command "mpc listall" "*mpcel Music library*"  "*mpcel Music library")
   (with-current-buffer "*mpcel Music library*"
          (toggle-read-only))
 )
@@ -224,13 +225,13 @@
 (defun mpcel-library-search-track (pattern)
  (interactive "sEnter searchpattern:" pattern)
   ;; Use buffer with Music library
- ( if (string= (buffer-name) "*mpcel Music library") 
+ ( if (string= (buffer-name) "*mpcel Music library*") 
 	  (message "Library buffer select") 
       (mpcel-library-list))
 )
 
 ;; prints the playlist :
-(defun mpcel-playlist-print ()
+o(defun mpcel-playlist-print ()
   "Prints entire mpd's playlist"
   (interactive)
   (shell-command 
