@@ -194,16 +194,7 @@
   (shell-command 
    "mpc lsplaylists"))
 
-;; prints the current playlist :
-(defun mpcel-playlist-current-print ()
-  "Prints mpd's current playlist"
-  (interactive)
-  (get-buffer-create "*mpcel playlist*") 
-  (shell-command 
-   "mpc --format \"[%artist%--[%album%--[%title%]]]|[%file%]\" playlist" "*mpcel playlist*")
-  (with-current-buffer "*mpcel playlist*"
-         (toggle-read-only))
-)
+
 
 ;; library functions
 
@@ -230,12 +221,27 @@
       (mpcel-library-list))
 )
 
+;; playlist functions
+
 ;; prints the playlist :
-o(defun mpcel-playlist-print ()
+(defun mpcel-playlist-print ()
   "Prints entire mpd's playlist"
   (interactive)
   (shell-command 
    "mpc --format \"[%artist%--[%album%--[%title%]]]|[%file%]\" playlist"))
+
+;; prints the current playlist :
+;; possible replacement for mpcel-playlist-print
+(defun mpcel-playlist-current-print ()
+  "Prints mpd's current playlist"
+  (interactive)
+  (get-buffer-create "*mpcel playlist*") 
+  (shell-command 
+   "mpc --format \"[%artist%--[%album%--[%title%]]]|[%file%]\" playlist" "*mpcel playlist*")
+;;  (call-process mpcel-mpc-program nil nil nil "--format \"[%artist%--[%album%--[%title%]]]|[%file%]\" playlist\" \"*mpcel playlist*\"")
+  (with-current-buffer "*mpcel playlist*"
+         (toggle-read-only))
+)
 
 ;; clear playlist
 (defun mpcel-playlist-clear ()
@@ -259,7 +265,6 @@ o(defun mpcel-playlist-print ()
     (shell-command mchse)))
   (message "Tracks : %s"
 	   (shell-command-to-string "mpc playlist | wc -l")))
-
 
 ;; shuffle playlist
 (defun mpcel-playlist-shuffle ()
