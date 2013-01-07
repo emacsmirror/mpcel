@@ -214,11 +214,14 @@
 
 ;;*** 2009-11-09-19:27 Rene ***
 (defun mpcel-library-search-track (pattern)
- (interactive "sEnter searchpattern:" pattern)
+ (interactive "sEnter searchpattern: " pattern)
   ;; Use buffer with Music library
  ( if (string= (buffer-name) "*mpcel Music library*") 
 	  (message "Library buffer select") 
       (mpcel-library-list))
+      (search-forward pattern)
+      (goto-char (line-beginning-position))
+      (push-mark (line-end-position) nil t)
 )
 
 ;; playlist functions
