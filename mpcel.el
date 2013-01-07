@@ -135,7 +135,7 @@
   "mpcel : toggle repeat mode."
   (interactive 
    "MRandomize ? ( \"on\" or \"off\") : ")
-  (call-process mpcel-mpc-program nil nil nil "reapeat" offoron)
+  (call-process mpcel-mpc-program nil nil nil "repeat" offoron)
   (message (concat "Repeat mode : " offoron)))
 
 ;; mpc pause playing music :
