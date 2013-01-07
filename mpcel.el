@@ -134,7 +134,7 @@
 (defun mpcel-repeat-mode (offoron)
   "mpcel : toggle repeat mode."
   (interactive 
-   "MRandomize ? ( \"on\" or \"off\") : ")
+   "MRepeat ? ( \"on\" or \"off\") : ")
   (call-process mpcel-mpc-program nil nil nil "repeat" offoron)
   (message (concat "Repeat mode : " offoron)))
 
