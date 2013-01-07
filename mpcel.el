@@ -204,8 +204,8 @@
   (switch-to-buffer (get-buffer-create "*mpcel Music library*"))
    (shell-command "mpc listall" "*mpcel Music library*"  "*mpcel Music library")
   (with-current-buffer "*mpcel Music library*"
-         (toggle-read-only))
-)
+        (setq buffer-read-only t)
+))
 
 ;;*** 2009-10-28-21:07 Rene ***
 (defun mpcel-playlist-add-song-library
