@@ -243,12 +243,12 @@
          (setq buffer-read-only t))
 )
 
-;; clear playlist
-;; (defun mpcel-playlist-clear ()
-;;   "Clear the mpd playlist"
-;;   (interactive)
-;;   (call-process mpcel-mpc-program nil nil nil "clear")
-;;   (message "the playlist is cleared"))
+;;clear playlist
+(defun mpcel-playlist-clear ()
+   "Clear the mpd playlist"
+   (interactive)
+   (call-process mpcel-mpc-program nil nil nil "clear")
+   (message "the playlist is cleared"))
 
 ;; add song :
 (defun mpcel-add-songs (art rest)
