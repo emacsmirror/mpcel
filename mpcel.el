@@ -240,7 +240,7 @@
    "mpc --format \"[%artist%--[%album%--[%title%]]]|[%file%]\" playlist" "*mpcel playlist*")
 ;;  (call-process mpcel-mpc-program nil nil nil "--format \"[%artist%--[%album%--[%title%]]]|[%file%]\" playlist\" \"*mpcel playlist*\"")
   (with-current-buffer "*mpcel playlist*"
-         (toggle-read-only))
+         (setq buffer-read-only t))
 )
 
 ;; clear playlist
