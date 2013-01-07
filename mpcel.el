@@ -120,7 +120,7 @@
   "Stop playing music in mpd"
   (interactive)
   (call-process mpcel-mpc-program nil nil nil "stop")
-  (message "music is stoped"))
+  (message "music is stopped"))
 
 ;; toggle random mode.
 (defun mpcel-random-mode (onoroff)
