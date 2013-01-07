@@ -230,9 +230,9 @@
   (shell-command 
    "mpc --format \"[%artist%--[%album%--[%title%]]]|[%file%]\" playlist"))
 
-;; prints the current playlist :
+;; prints the current playlist in a buffer :
 ;; possible replacement for mpcel-playlist-print
-(defun mpcel-playlist-current-print ()
+(defun mpcel-playlist-buffer-print ()
   "Prints mpd's current playlist"
   (interactive)
   (get-buffer-create "*mpcel playlist*") 
