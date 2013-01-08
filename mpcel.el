@@ -122,6 +122,14 @@
   (call-process mpcel-mpc-program nil nil nil "stop")
   (message "music is stopped"))
 
+;;toggle single mode
+(defun mpcel-single-mode (onoroff)
+  "mpcel : toggle single mode."
+  (interactive 
+   "MSingle repeat ? ( \"on\" or \"off\") : ")
+  (call-process mpcel-mpc-program nil nil nil "single" onoroff)
+  (message (concat "Single repeat mode : " onoroff)))
+
 ;; toggle random mode.
 (defun mpcel-random-mode (onoroff)
   "mpcel : toggle random mode."
