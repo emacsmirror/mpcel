@@ -122,6 +122,13 @@
   (call-process mpcel-mpc-program nil nil nil "stop")
   (message "music is stopped"))
 
+;; mpcel status
+(defun mpcel-status ()
+  "Displays mpc status in the minibuffer"
+  (interactive)
+  (message "mpc-status: %s" 
+	 (shell-command-to-string "mpc status |tail -n -1")))
+
 ;;toggle single mode
 (defun mpcel-single-mode (onoroff)
   "mpcel : toggle single mode."
