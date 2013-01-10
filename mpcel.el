@@ -129,6 +129,12 @@
   (message "mpc-status: %s" 
 	 (shell-command-to-string "mpc status |tail -n -1")))
 
+;; mpcel now playing
+(defun mpcel-now-playing ()
+"Displays the title of the current song in the mini-buffer"
+(interactive)
+(message "Now playing: %s" (shell-command-to-string "mpc status|head -n1")))
+
 ;;toggle single mode
 (defun mpcel-single-mode (onoroff)
   "mpcel : toggle single mode."
