@@ -82,8 +82,7 @@
 (defun mpcel-version ()
   "mpcel version. This is the first."
   (interactive)
-  (message "mpcel version 1.3 - written in 2006 by Bourgoin Jean-Baptiste"))
-
+  (message "mpcel version 1.3 - Original version written in 2006 by ourgoin Jean-Baptiste"))
 
 ;; MPD
 
