@@ -1,3 +1,12 @@
+2012-12-19  Rene Borchers  <rene@laptop.lan>
+
+	* mpcel.el: mpce-playlist-current-print verplaatst naar
+	            naar de playlist sectie
+
+2012-12-16  Rene Borchers  <rene@laptop.lan>
+
+	* mpcel.el (mpcel-library-list): functie werkend gemaakt
+
 2012-12-15  Rene Borchers  <rene@laptop.lan>
 
 	* mpcel.el: 

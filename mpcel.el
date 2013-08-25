@@ -82,7 +82,7 @@
 (defun mpcel-version ()
   "mpcel version. This is the first."
   (interactive)
-  (message "mpcel version 1.3 - Original version written in 2006 by ourgoin Jean-Baptiste"))
+  (message "mpcel version 1.3 - Original version written in 2006 by Bourgoin Jean-Baptiste"))
 
 ;; MPD
 
@@ -229,7 +229,9 @@
 
 ;;*** 2009-10-28-21:07 Rene ***
 (defun mpcel-playlist-add-song-library
-  (interactive)
+"Add song to playlist from Library buffer"
+ (interactive)
+
 )
 
 ;;*** 2009-11-09-19:27 Rene ***
