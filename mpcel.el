@@ -209,12 +209,15 @@
 )
 
 (defun mpcel-playlist-view ()
+;; Not working *** 2013-08-26-15:07 Rene ***
+;; Moet eigen buffer krijgen 
 "Shows available playlists"
   (interactive)
-  (shell-command 
-   "mpc lsplaylists"))
-
-
+  (switch-to-buffer (get-buffer-create "*mpcel Playlists*"))
+     (shell-command "mpc lsplaylists" "*mpcel Playlists*"  "*mpcel Playlists*")
+  (with-current-buffer "*mpcel Playlists*"
+        (setq buffer-read-only t))
+)
 
 ;; library functions
 
