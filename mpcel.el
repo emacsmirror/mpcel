@@ -151,12 +151,12 @@
   (message (concat "Random mode : " onoroff)))
 
 ;; toggle repeat mode.
-(defun mpcel-repeat-mode (offoron)
+(defun mpcel-repeat-mode (onoroff)
   "mpcel : toggle repeat mode."
   (interactive 
    "MRepeat ? ( \"on\" or \"off\") : ")
-  (call-process mpcel-mpc-program nil nil nil "repeat" offoron)
-  (message (concat "Repeat mode : " offoron)))
+  (call-process mpcel-mpc-program nil nil nil "repeat" onoroff)
+  (message (concat "Repeat mode : " onoroff)))
 
 ;; mpc pause playing music :
 (defun mpcel-pause ()
