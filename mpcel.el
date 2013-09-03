@@ -252,14 +252,6 @@
 (defun mpcel-playlist-print ()
   "Prints entire mpd's playlist"
   (interactive)
-  (shell-command 
-   "mpc --format \"[%artist%--[%album%--[%title%]]]|[%file%]\" playlist"))
-
-;; prints the current playlist in a buffer :
-;; possible replacement for mpcel-playlist-print
-(defun mpcel-playlist-buffer-print ()
-  "Prints mpd's current playlist"
-  (interactive)
   (switch-to-buffer (get-buffer-create "*mpcel playlist*"))
   (shell-command 
    "mpc --format \"[%artist%--[%album%--[%title%]]]|[%file%]\" playlist" "*mpcel playlist*")
