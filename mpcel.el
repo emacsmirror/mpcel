@@ -203,6 +203,7 @@
 (defun mpcel-playlist-load (playlist)
  "mpcel : Loads playlist"
  (interactive "MPlaylist name: ")
+  (mpcel-playlist-clear)
  (if (eq 0 (call-process mpcel-mpc-program nil nil nil "load" playlist))
      (message "Playlist %s loaded" playlist)
   (message "Playlist %s not found" playlist))
