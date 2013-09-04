@@ -209,9 +209,7 @@
 )
 
 (defun mpcel-playlist-view ()
-;; Not working *** 2013-08-26-15:07 Rene ***
-;; Moet eigen buffer krijgen 
-"Shows available playlists"
+  "Shows available playlists"
   (interactive)
   (switch-to-buffer (get-buffer-create "*mpcel Playlists*"))
      (shell-command "mpc lsplaylists" "*mpcel Playlists*"  "*mpcel Playlists*")
@@ -230,7 +228,6 @@
         (setq buffer-read-only t)
 ))
 
-;;*** 2009-11-09-19:27 Rene ***
 (defun mpcel-library-search-track (pattern)
  (interactive "sEnter searchpattern: " pattern)
   ;; Use buffer with Music library
@@ -251,7 +248,6 @@
   (switch-to-buffer (get-buffer-create "*mpcel playlist*"))
   (shell-command 
    "mpc --format \"[%artist%--[%album%--[%title%]]]|[%file%]\" playlist" "*mpcel playlist*")
-;;  (call-process mpcel-mpc-program nil nil nil "--format \"[%artist%--[%album%--[%title%]]]|[%file%]\" playlist\" \"*mpcel playlist*\"")
   (with-current-buffer "*mpcel playlist*"
          (setq buffer-read-only t))
 )
