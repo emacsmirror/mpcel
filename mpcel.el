@@ -230,13 +230,6 @@
         (setq buffer-read-only t)
 ))
 
-;;*** 2009-10-28-21:07 Rene ***
-(defun mpcel-playlist-add-song-library
-"Add song to playlist from Library buffer"
- (interactive)
-
-)
-
 ;;*** 2009-11-09-19:27 Rene ***
 (defun mpcel-library-search-track (pattern)
  (interactive "sEnter searchpattern: " pattern)
