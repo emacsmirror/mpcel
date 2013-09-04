@@ -208,6 +208,14 @@
   (message "Playlist %s not found" playlist))
 )
 
+; merge playlist with the current playlist
+(defun mpcel-playlist-merge (playlist)
+ "Merge playlist with the current playlist"
+ (interactive "MPlaylist name: ")
+ (if (eq 0 (call-process mpcel-mpc-program nil nil nil "load" playlist))
+     (message "Playlist %s loaded" playlist)
+  (message "Playlist %s not found" playlist))
+)
 (defun mpcel-playlist-view ()
   "Shows available playlists"
   (interactive)
