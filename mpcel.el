@@ -82,8 +82,7 @@
 (defun mpcel-version ()
   "mpcel version. This is the first."
   (interactive)
-  (message "mpcel version 1.1 - written in 2006 by Bourgoin Jean-Baptiste"))
-
+  (message "mpcel version 1.3 - Original version written in 2006 by Bourgoin Jean-Baptiste"))
 
 ;; MPD
 
@@ -120,7 +119,28 @@
   "Stop playing music in mpd"
   (interactive)
   (call-process mpcel-mpc-program nil nil nil "stop")
-  (message "music is stoped"))
+  (message "music is stopped"))
+
+;; mpcel status
+(defun mpcel-status ()
+  "Displays mpc status in the minibuffer"
+  (interactive)
+  (message "mpc-status: %s" 
+	 (shell-command-to-string "mpc status |tail -n -1")))
+
+;; mpcel now playing
+(defun mpcel-now-playing ()
+"Displays the title of the current song in the mini-buffer"
+(interactive)
+(message "Now playing: %s" (shell-command-to-string "mpc status|head -n1")))
+
+;;toggle single mode
+(defun mpcel-single-mode (onoroff)
+  "mpcel : toggle single mode."
+  (interactive 
+   "MSingle repeat ? ( \"on\" or \"off\") : ")
+  (call-process mpcel-mpc-program nil nil nil "single" onoroff)
+  (message (concat "Single repeat mode : " onoroff)))
 
 ;; toggle random mode.
 (defun mpcel-random-mode (onoroff)
@@ -131,12 +151,12 @@
   (message (concat "Random mode : " onoroff)))
 
 ;; toggle repeat mode.
-(defun mpcel-repeat-mode (offoron)
+(defun mpcel-repeat-mode (onoroff)
   "mpcel : toggle repeat mode."
   (interactive 
-   "MRandomize ? ( \"on\" or \"off\") : ")
-  (call-process mpcel-mpc-program nil nil nil "reapeat" offoron)
-  (message (concat "Repeat mode : " offoron)))
+   "MRepeat ? ( \"on\" or \"off\") : ")
+  (call-process mpcel-mpc-program nil nil nil "repeat" onoroff)
+  (message (concat "Repeat mode : " onoroff)))
 
 ;; mpc pause playing music :
 (defun mpcel-pause ()
@@ -183,24 +203,70 @@
 (defun mpcel-playlist-load (playlist)
  "mpcel : Loads playlist"
  (interactive "MPlaylist name: ")
+  (mpcel-playlist-clear)
  (if (eq 0 (call-process mpcel-mpc-program nil nil nil "load" playlist))
      (message "Playlist %s loaded" playlist)
   (message "Playlist %s not found" playlist))
 )
 
+; merge playlist with the current playlist
+(defun mpcel-playlist-merge (playlist)
+ "Merge playlist with the current playlist"
+ (interactive "MPlaylist name: ")
+ (if (eq 0 (call-process mpcel-mpc-program nil nil nil "load" playlist))
+     (message "Playlist %s loaded" playlist)
+  (message "Playlist %s not found" playlist))
+)
+(defun mpcel-playlist-view ()
+  "Shows available playlists"
+  (interactive)
+  (switch-to-buffer (get-buffer-create "*mpcel Playlists*"))
+     (shell-command "mpc lsplaylists" "*mpcel Playlists*"  "*mpcel Playlists*")
+  (with-current-buffer "*mpcel Playlists*"
+        (setq buffer-read-only t))
+)
+
+;; library functions
+
+(defun mpcel-library-list ()
+"Shows all the files in the music library"
+  (interactive)
+  (switch-to-buffer (get-buffer-create "*mpcel Music library*"))
+   (shell-command "mpc listall" "*mpcel Music library*"  "*mpcel Music library")
+  (with-current-buffer "*mpcel Music library*"
+        (setq buffer-read-only t)
+))
+
+(defun mpcel-library-search-track (pattern)
+ (interactive "sEnter searchpattern: " pattern)
+  ;; Use buffer with Music library
+ ( if (string= (buffer-name) "*mpcel Music library*") 
+	  (message "Library buffer select") 
+      (mpcel-library-list))
+      (search-forward pattern)
+      (goto-char (line-beginning-position))
+      (push-mark (line-end-position) nil t)
+)
+
+;; playlist functions
+
 ;; prints the playlist :
 (defun mpcel-playlist-print ()
-  "Prins entire mpd's playlist"
+  "Prints entire mpd's playlist"
   (interactive)
+  (switch-to-buffer (get-buffer-create "*mpcel playlist*"))
   (shell-command 
-   "mpc --format \"[%artist%--[%album%--[%title%]]]|[%file%]\" playlist"))
+   "mpc --format \"[%artist%--[%album%--[%title%]]]|[%file%]\" playlist" "*mpcel playlist*")
+  (with-current-buffer "*mpcel playlist*"
+         (setq buffer-read-only t))
+)
 
-;; clear playlist
+;;clear playlist
 (defun mpcel-playlist-clear ()
-  "Clear the mpd playlist"
-  (interactive)
-  (call-process mpcel-mpc-program nil nil nil "clear")
-  (message "the playlist is cleared"))
+   "Clear the mpd playlist"
+   (interactive)
+   (call-process mpcel-mpc-program nil nil nil "clear")
+   (message "the playlist is cleared"))
 
 ;; add song :
 (defun mpcel-add-songs (art rest)
@@ -217,7 +283,6 @@
     (shell-command mchse)))
   (message "Tracks : %s"
 	   (shell-command-to-string "mpc playlist | wc -l")))
-
 
 ;; shuffle playlist
 (defun mpcel-playlist-shuffle ()
